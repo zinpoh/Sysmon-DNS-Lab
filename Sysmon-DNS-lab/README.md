@@ -1,11 +1,16 @@
-Sysmon DNS Threat Hunting Project
-Objetivo
-Implementar un sistema de monitoreo de resolución de nombres (DNS) para detectar posibles balizas de malware (beacons) o exfiltración de datos en entornos Windows utilizando Microsoft Sysmon.
+# 🛡️ Sysmon DNS Threat Hunting Lab
 
-Implementación
-    1. Configuración: Diseñé un archivo XML personalizado para filtrar el tráfico legítimo (CDN de Steam, navegadores, Windows Update) y resaltar consultas originadas por procesos sospechosos como PowerShell o ejecutables en rutas temporales.
+Este proyecto demuestra la implementación de **Microsoft Sysmon** para el monitoreo avanzado de consultas DNS en entornos Windows, permitiendo la visibilidad de conexiones de red a nivel de proceso.
 
-    2. Análisis de Eventos: Utilicé el Evento ID 22 para trazar la relación entre un proceso (Image) y el dominio consultado (QueryName).
+## 🚀 Contenido del Repositorio
+- `dns-monitor-config.xml`: Configuración optimizada para capturar el Evento ID 22 (DNS), filtrando tráfico legítimo de navegadores y Steam.
+- `Get-DnsAlerts.ps1`: Script de automatización en PowerShell para extraer alertas DNS en tiempo real.
 
-Hallazgo de Ejemplo (Caso Real)
-    "Durante las pruebas, identifiqué que el proceso steam.exe generaba múltiples consultas a dominios de CDNs como qwilted-cds.cqloud.com. Gracias a Sysmon, pude verificar que el binario era legítimo y la conexión era esperada para la descarga de contenido, descartando un falso positivo."
+## 📊 Evidencia de Funcionamiento
+![Evidencia de Sysmon](./img/evidencia-sysmon.png)
+*Captura: Monitoreo activo de procesos realizando consultas DNS (Evento 22).*
+
+## 🧠 Conocimientos Aplicados
+- Análisis de logs de seguridad (Windows Event Viewer).
+- Configuración de filtros XML para SIEM/Sysmon.
+- Diferenciación entre tráfico legítimo (CDNs de Qwilted/Steam) y posibles indicadores de compromiso.
