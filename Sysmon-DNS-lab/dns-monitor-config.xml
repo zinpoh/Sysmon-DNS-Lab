@@ -1,0 +1,17 @@
+<Sysmon schemaversion="4.82">
+  <EventFiltering>
+    <RuleGroup name="DNS Monitoring" groupRelation="or">
+      <DnsQuery onmatch="exclude">
+        <Image condition="end with">steam.exe</Image>
+        <Image condition="end with">chrome.exe</Image>
+        <Image condition="end with">msedge.exe</Image>
+        <QueryName condition="contains">microsoft.com</QueryName>
+      </DnsQuery>
+      
+      <DnsQuery onmatch="include">
+        <Image condition="begin with">C:\Users</Image> <Image condition="contains">powershell.exe</Image>
+        <Image condition="contains">cmd.exe</Image>
+      </DnsQuery>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
